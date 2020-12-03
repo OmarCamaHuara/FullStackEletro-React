@@ -1,45 +1,106 @@
 import Gmail from '../../img/gmail.png';
 import Whatsapp from '../../img/whatsapp.png';
 import './styles.css';
+import React, {useState, useEffect} from 'react';
 
-export default function Contatos(props){
+const Contatos = () =>{
+
+    const [comentarios, setComentarios] = useState([]);
+    const [render, setRender] = useState(false);
+    const [msg , setMsg] = useState(false);
+
+    useEffect(async () => {
+        const url = "http://localhost/proyectoFullStack/FullStackEletro-Ract/Backend/indexCom.php";
+        const response = await fetch(url);
+        setComentarios(await response.json());
+    }, [render])
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const 
+        }
+    })
+
+
+    async function registerComent(event){
+        event.preventDefault();
+        let formData = new FormData(event.target);
+
+        const url = "http://localhost/proyectoFullStack/FullStackEletro-Ract/Backend/Comentarios.php";
+
+        fetch(url, {
+            method: "POST",
+            body: formData
+        }).then((response) => response.json()).then((dados) => {
+            setRender(!render);
+            setMsg(dados);
+            setTimeout(() => {
+                setMsg(false);
+            }, 2000);
+        });
+    }
+
+
     return (
-    <div class="container mt-5">
+    <div className="container mt-5">
         <header>
-            <h2 class="text-info">Contato!</h2>
+            <h2 className="text-info">Contato!</h2>
         </header>
         <hr />
-        <section class="filiais">
-            <div class="contacto">
+        <section className="filiais">
+            <div className="contacto">
                 <img src={Gmail} />
                 contacto@fullstackeletro
             </div>
-            <div class="contacto">
+            <div className="contacto">
                 <img src={Whatsapp} />
                 (11) 980808286
             </div>
         </section>
 
         
-        <section class="formulario">
-            <form>
-                <div class="form-group">
+        <section className="formulario">
+            <form onSubmit={registerComent}>
+                <div className="form-group">
                     <label for="exampleFormControlInput1">Nome:</label>
-                    <input type="email" class="form-control"  name="nome" id="exampleFormControlInput1" placeholder="name@example.com" />
+                    <input type="text" className="form-control"  name="nome" id="exampleFormControlInput1" placeholder="Seu nome" />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="exampleFormControlTextarea1">Mensaje:</label>
-                    <textarea class="form-control" name="msg" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea className="form-control" name="msg" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar</button>
+                <button className="btn btn-primary btn-lg btn-block">Enviar</button>
             </form>
         </section>
 
+        { msg && <div className="alert alert-success mx-auto mt-4 w-75" role="alert">
+            Cadastro efectuado com sucesso
+        </div>
+
+        }
+
             <h2>Comentarios</h2>
-            <section class="comen">
+            <section className="comen">
+                {
+                    comentarios.map((element) => {
+                        return (
+                            <div key={element.comentario_id} className="card w-50 mx-auto mt-3">
+                                <div className="card-header">
+                                    {element.nome}
+                                </div>
+                                <div className="card-body">
+                                    Mensaje: {element.msg}
+                                </div>
+                            </div>
+                        )
+                    })
+                }
 
                 
             </section>
     </div>
     );
 }
+export default Contatos;

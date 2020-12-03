@@ -57,3 +57,11 @@ value('Fidel', '(11)98080-8286', 'Rua Sao Feliciano',"Fogon de 4 bocas con mesa 
 
 -- Olhando o que aconteceu
 select * from usuario;
+
+CREATE TABLE comentarios (
+    comentarios_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    msg VARCHAR(150) NOT NULL
+);
+
+DROP TABLE comentarios;
