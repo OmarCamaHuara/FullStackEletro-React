@@ -17,13 +17,6 @@ const Contatos = () =>{
 
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const 
-        }
-    })
-
-
     async function registerComent(event){
         event.preventDefault();
         let formData = new FormData(event.target);
@@ -62,6 +55,7 @@ const Contatos = () =>{
 
         
         <section className="formulario">
+
             <form onSubmit={registerComent}>
                 <div className="form-group">
                     <label for="exampleFormControlInput1">Nome:</label>
@@ -73,7 +67,9 @@ const Contatos = () =>{
                 </div>
                 <button className="btn btn-primary btn-lg btn-block">Enviar</button>
             </form>
+
         </section>
+
 
         { msg && <div className="alert alert-success mx-auto mt-4 w-75" role="alert">
             Cadastro efectuado com sucesso
@@ -82,10 +78,12 @@ const Contatos = () =>{
         }
 
             <h2>Comentarios</h2>
+            
             <section className="comen">
                 {
                     comentarios.map((element) => {
                         return (
+
                             <div key={element.comentario_id} className="card w-50 mx-auto mt-3">
                                 <div className="card-header">
                                     {element.nome}
@@ -95,7 +93,7 @@ const Contatos = () =>{
                                 </div>
                             </div>
                         )
-                    })
+                    }).reverse()
                 }
 
                 

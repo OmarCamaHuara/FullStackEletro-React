@@ -5,21 +5,29 @@ const Produtos = () => {
         const [produ, setProdu] = useState([]);
 
         useEffect(async () => {
-            const url ="http://localhost/proyectoFullStack/Backend/";
+            const url ="http://localhost/proyectoFullStack/FullStackEletro-Ract/Backend/";
             const resp = await fetch(url);
             setProdu(await resp.json()); 
         }, [])
 
+        //let destaque = (img) => {
+        //if(){
+
+        //}else {
+
+        //}
+        //}
+        
         return(
             <>
-            <section className="container  produtos bg-info">
+            <section className="container mx-auto mt-5 produtos row justify-content-center bg-info">
                 {
                     
                     produ.map(row => {
                             return(
-                            <div className="row justify-content-center">
+                            <div className="col-3 my-2 bg-danger">
 
-                                <div key={row.idproduct} className="box_produto card col-3 bg-danger" style={{width:"14rem"}} id={row.categoria}>
+                                <div key={row.idproduct} className="box_produto card border border-success border-2" style={{width:"12rem"}} id={row.categoria}>
                                     <img className="card-img-top" src={row.imagen} alt="imagem" img-fluid/>
                                     <br />
                                     <div className="card-body">
@@ -27,7 +35,7 @@ const Produtos = () => {
                                     </div>
                                     <hr />
                                     <div>
-                                        <p className="card-text" style={{textDecoration: "line-yhough"}}>R${row.preco}</p>
+                                        <p className="card-text" style={{textDecoration: "line-though"}}>R${row.preco}</p>
                                     </div>
                                     <div>
                                         <p className="card-text"> R${row.precoFinal} </p>
