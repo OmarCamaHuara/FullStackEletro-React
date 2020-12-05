@@ -31,32 +31,27 @@ value
 select * from produtos;
 
 -- Criando TABLE usuario
-create table usuario (
-	idusuario int auto_increment primary key,
-    nome varchar(25) not null,
-    telefone varchar(25) not null,
-    endereco varchar(25) not null,
-    producto varchar(50) not null,
-    precoUnidade float(8.2) not null,
-    quantidade int not null,
-    valorFinal float (8.2) not null
+CREATE TABLE usuarios (
+	idUsuarios INT PRIMARY KEY AUTO_INCREMENT,
+    idProdutos INT NOT NULL,
+    nome VARCHAR(25) NOT NULL,
+    sobrenome VARCHAR(25) NOT NULL,
+    cpf VARCHAR(25) NOT NULL,
+    cep BIGINT(50) NOT NULL,
+    telefone INT(15) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    FOREIGN KEY (idProdutos) REFERENCES produtos(idproduct)
 );
 
+
+
 -- ADD Usuarios
-insert into usuario (nome, telefone, endereco, producto, precoUnidade, quantidade, valorFinal)
-value('Fidel', '(11)98080-8286', 'Rua Sao Feliciano',"Fogon de 4 bocas con mesa de madera mais um horno", 2019.00, 1, 2019.00 ),
-('Omar', '(11)45300-1136', 'Rua Sao Doce de Octubro',"Lava Louça Frost Free Brastemp Side Inverse  540Litros", 8390.00, 1, 8390.00),
-('Max', '(11)64679-8285', 'Rua Sao Rosa de Saron',"Geladeira Frost Free Brastemp Side Inverse  600 Litros", 10389.00, 1, 103890.00 ),
-('Victor', '(11)84613-8256', 'Rua Principao',"Lavadora Frost Free Brastemp Side Inverse  150 Litros", 2389.00, 1, 2019.00 ),
-('Florinda', '(11)95510-8256', 'Av. dos Autonomistas',"Fogon de 4 bocas con mesa de madera mais um horno", 2019.00, 1, 2019.00 ),
-('Nancy', '(11)55280-8586', 'Rua Vicente',"Lavadora Frost Free Brastemp Side Inverse  150 Litros", 2389.00, 1, 2019.00 ),
-('Jaqueline', '(11)95456-8586', 'Rua Aobuquerque',"Microondas Frost Free Brastemp Side Inverse  30 Litros", 1389.00, 1, 1389.00 ),
-('Adriely', '(11)98971-5286', 'Rua Airton Cena',"Lava Louça Frost Free Brastemp Side Inverse  540Litros", 8390.00, 1, 8390.00 ),
-('Mariana', '(11)98946-8285', 'Rua do O',"Fogon de 4 bocas con mesa de madera mais um horno", 2019.00, 1, 2019.00 );
+insert into usuarios (idProdutos, nome, sobrenome, cpf, cep, telefone, email)
+value(10, "Victoria", "Vih", "242.265.585-58", 02470030, 11980808286, "victoria.js2023@gmail.com");
 
 
 -- Olhando o que aconteceu
-select * from usuario;
+select * from usuarios;
 
 CREATE TABLE comentarios (
     comentarios_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -65,3 +60,11 @@ CREATE TABLE comentarios (
 );
 
 DROP TABLE comentarios;
+
+
+
+
+SELECT p.categoria AS Categoria, p.imagen AS Imagen, p.precoFinal AS TOTAL, u.nome AS Nome, u.sobrenome AS Sobrenome, u.email AS Email
+FROM produtos as p
+        JOIN usuarios AS u
+        ON p.idproduct = u.idProdutos;

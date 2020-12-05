@@ -1,5 +1,7 @@
+import Formulario from '../Produtos/Formulario';
+
 export default function Pedidos(props){
     return(
-        <h1>Pedidos</h1>
+        <Formulario > 10 </Formulario>
     );
 }

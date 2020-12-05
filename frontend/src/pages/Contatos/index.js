@@ -5,6 +5,8 @@ import React, {useState, useEffect} from 'react';
 
 const Contatos = () =>{
 
+
+    const [alert, setAlert] = useState (false);
     const [comentarios, setComentarios] = useState([]);
     const [render, setRender] = useState(false);
     const [msg , setMsg] = useState(false);
