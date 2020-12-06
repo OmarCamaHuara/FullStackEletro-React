@@ -28,11 +28,11 @@
         public function registrarUsuario(){
             $conn = Connection::getDB();
 
-            $sql = $conn->query("INSERT INTO usuarios (idProdutos, nome, sobrenome, cpf, cep, telefone, email)VALUES('$this->idProdutos','$this->name', '$this->sobrenome', '$this->cpf', '$this->cep', '$this->telefone', '$this->email')");
+            $sql = $conn->query("INSERT INTO usuarios (idProdutos, nome, sobrenome, cpf, cep, telefone, email)VALUES('$this->idProdutos','$this->nome', '$this->sobrenome', '$this->cpf', '$this->cep', '$this->telefone', '$this->email')");
 
         
 
-            if($sql->rowCount() > 0){
+            if($sql == true){
                 return true;
             }else {
                 return false;

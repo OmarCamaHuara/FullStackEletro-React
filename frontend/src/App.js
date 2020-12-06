@@ -17,7 +17,7 @@ function App() {
           <main>
             <Routes />
           </main>
-          <footer><Footer /></footer>
+          <footer className="mt-5"><Footer /></footer>
         </div>
       </BrowserRouter>
   );

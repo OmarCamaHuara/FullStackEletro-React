@@ -24,7 +24,7 @@ export default function Formulario({children}){
             setUsuario(await res.json());
         }
         chamaApi()
-    }, [])
+    }, [render])
 
 
     async function registerVenta(event) {
@@ -37,7 +37,7 @@ export default function Formulario({children}){
         fetch(url, {
             method: "POST",
             body: formData
-        })
+        }).then((response) =>response.json())
     }
     
     return(
@@ -86,6 +86,7 @@ export default function Formulario({children}){
                             <label for="exampleFormControlInput1">Telefone:</label>
                             <input type="number" className="form-control"  name="telefone" id="exampleFormControlInput1" placeholder="Telefone" />
                         </div>
+                        
                         <div className="form-group col-6">
                             <label for="exampleFormControlInput1">Email:</label>
                             <input type="email" className="form-control"  name="email" id="exampleFormControlInput1" placeholder="pepito42@gmail.com" />
@@ -93,45 +94,13 @@ export default function Formulario({children}){
                     </div>
 
                     <input type="reset" className="btn btn-primary btn-lg btn-block" value="Reset Formulario"/>
-                    <button className="btn btn-primary btn-lg btn-block">Enviar</button>
+                    <button className="btn btn-primary btn-lg btn-block" >Enviar</button>
                 </form>
 
             </section>
-        {/** 
-            {
-                usuario.map(row => {
-                    return(
+
+
         
-                        <div className="col-3 my-2 bg-danger">
-
-                        <div key={row.idProdutos} className="box_produto card border border-2" style={{width:"12rem"}} id={row.categoria}>
-                            
-                            <img className="card-img-top" src={row.imagen} alt="imagem" img-fluid/>
-                            <br />
-                            <div className="card-body">
-                                <p className="card-text">{row.categoria}</p>
-                            </div>
-                            <div className="card-body">
-                                <p className="card-text">{row.nome}</p>
-                            </div>
-                            <hr />
-                            <div>
-                                <p className="card-text text-center"  style={{textDecoration: "line-though"}}>{row.sobrenome}</p>
-                            </div>
-                            <div>
-                                <p className="card-text text-center"> <strong>{row.email}</strong> </p>
-                            </div>
-                            <div>
-                                <p className="card-text text-center text-danger"> <strong>{row.precoFinal}</strong> </p>
-                            </div>
-                        </div>
-                        
-                     </div>
-                    )
-                })
-            }
-
-            */}
 
         </div>
 

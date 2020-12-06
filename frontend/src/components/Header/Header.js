@@ -12,9 +12,10 @@ function HeaderBase(){
             <a className="nav-link active text-white" as={Link} to="/" href="/"><img className="logo" src={Suricatas} alt="FullStackEletro" /></a>
         </li>
         <li className="nav-item">
-
+            <a className="nav-link text-white" as={Link} to="/pedidos" href="/pedidos">Pedidos</a>
+        </li>
+        <li className="nav-item">
             <Categoria />
-
         </li>
         <li className="nav-item">
             <a className="nav-link text-white" as={Link} to="/lojas" href="/lojas">Nossas Lojas</a>
